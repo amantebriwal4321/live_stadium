@@ -1,0 +1,349 @@
+@import "tailwindcss";
+
+/* ========================
+   ROAR — Design System
+   Dark, immersive, stadium-like
+   ======================== */
+
+@theme inline {
+  --color-rcb: #EC1C24;
+  --color-rcb-dark: #7A0000;
+  --color-rcb-glow: rgba(236, 28, 36, 0.4);
+  --color-dc: #17479E;
+  --color-dc-dark: #0D2B5E;
+  --color-dc-glow: rgba(23, 71, 158, 0.4);
+  --color-gold: #FFD700;
+  --color-stadium-dark: #0A0A0F;
+  --color-stadium-surface: #111118;
+  --color-stadium-card: #1A1A24;
+  --color-stadium-border: rgba(255, 255, 255, 0.06);
+  --color-text-primary: #F0F0F5;
+  --color-text-secondary: rgba(240, 240, 245, 0.6);
+  --color-text-muted: rgba(240, 240, 245, 0.35);
+  --color-euphoric: #FF6B35;
+  --color-nervous: #FFD700;
+  --color-devastated: #8B0000;
+  --color-disbelief: #9B59B6;
+  --color-furious: #E74C3C;
+  --color-hopeful: #2ECC71;
+  --color-live-red: #FF0040;
+}
+
+/* ========================
+   BASE
+   ======================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-stadium-dark);
+  color: var(--color-text-primary);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================
+   ANIMATIONS
+   ======================== */
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  10% { opacity: 0.8; }
+  20% { opacity: 1; }
+  30% { opacity: 0.6; }
+  40% { opacity: 0.9; }
+  50% { opacity: 1; }
+  60% { opacity: 0.7; }
+  70% { opacity: 1; }
+  80% { opacity: 0.85; }
+  90% { opacity: 1; }
+}
+
+@keyframes stadium-lights {
+  0% { opacity: 0; filter: brightness(0); }
+  20% { opacity: 0.3; filter: brightness(0.4); }
+  25% { opacity: 0.1; filter: brightness(0.2); }
+  40% { opacity: 0.6; filter: brightness(0.7); }
+  45% { opacity: 0.3; filter: brightness(0.4); }
+  60% { opacity: 0.8; filter: brightness(0.9); }
+  80% { opacity: 1; filter: brightness(1); }
+  100% { opacity: 1; filter: brightness(1); }
+}
+
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  70% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-120px) scale(0.5); }
+}
+
+/* Live Chat Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s infinite ease-in-out;
+}
+
+
+
+/* Playful UI Animations */
+@keyframes swing-bat {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg) scale(1.1); }
+}
+
+.animate-swing-bat {
+  animation: swing-bat 1.5s infinite ease-in-out;
+  transform-origin: bottom right;
+}
+
+@keyframes bounce-ball {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.1); }
+}
+
+.animate-bounce-ball {
+  animation: bounce-ball 0.8s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+
+@keyframes float-trophy {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(5deg); }
+  75% { transform: translateY(5px) rotate(-5deg); }
+}
+
+.animate-float-trophy {
+  animation: float-trophy 3s infinite ease-in-out;
+}
+
+@keyframes slam-in {
+  0% { transform: translateY(-100%) scaleY(0.3); opacity: 0; }
+  60% { transform: translateY(5%) scaleY(1.05); opacity: 1; }
+  80% { transform: translateY(-2%) scaleY(0.98); }
+  100% { transform: translateY(0) scaleY(1); opacity: 1; }
+}
+
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes orb-pulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.3), 0 0 60px rgba(255, 107, 53, 0.15); }
+  50% { box-shadow: 0 0 50px rgba(255, 107, 53, 0.5), 0 0 100px rgba(255, 107, 53, 0.25); }
+}
+
+@keyframes wave {
+  0% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.3); }
+}
+
+@keyframes slide-in-right {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-4px); }
+  20% { transform: translateX(4px); }
+  30% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes count-up {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ========================
+   UTILITY CLASSES
+   ======================== */
+
+.animate-flicker { animation: flicker 2s ease-in-out; }
+.animate-stadium-lights { animation: stadium-lights 3s ease-out forwards; }
+.animate-float-up { animation: float-up 3s ease-out forwards; }
+.animate-slam-in { animation: slam-in 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards; }
+.animate-orb-pulse { animation: orb-pulse 2s ease-in-out infinite; }
+.animate-shake { animation: shake 0.6s ease-in-out; }
+.animate-breathe { animation: breathe 3s ease-in-out infinite; }
+.animate-dot-pulse { animation: dot-pulse 2s ease-in-out infinite; }
+.animate-count-up { animation: count-up 0.6s ease-out forwards; }
+.animate-gradient-shift { 
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite; 
+}
+.animate-live-blink { animation: live-blink 1.2s ease-in-out infinite; }
+
+/* Glass morphism */
+.glass {
+  background: rgba(26, 26, 36, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-stadium-border);
+}
+
+.glass-strong {
+  background: rgba(17, 17, 24, 0.92);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Stadium ambient glow */
+.stadium-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.stadium-glow-rcb {
+  background: radial-gradient(ellipse at 50% -20%, var(--color-rcb) 0%, transparent 70%);
+}
+
+.stadium-glow-dc {
+  background: radial-gradient(ellipse at 50% -20%, #17479E 0%, transparent 70%);
+}
+
+/* Text shimmer */
+.text-shimmer {
+  background: linear-gradient(90deg, var(--color-text-primary) 0%, var(--color-gold) 50%, var(--color-text-primary) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Emotion stream container */
+.emotion-stream {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.emotion-reaction {
+  position: absolute;
+  animation: float-up 3s ease-out forwards;
+  pointer-events: none;
+  font-size: 1.5rem;
+}
+
+/* Waveform bars */
+.waveform-bar {
+  display: inline-block;
+  width: 3px;
+  margin: 0 1px;
+  background: var(--color-euphoric);
+  border-radius: 2px;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Live badge */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 0, 64, 0.15);
+  border: 1px solid rgba(255, 0, 64, 0.3);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-live-red);
+}
+
+.live-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-live-red);
+  animation: live-blink 1.2s ease-in-out infinite;
+}
+
+/* No-select for interactive elements */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
