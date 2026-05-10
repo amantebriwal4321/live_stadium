@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0d0d1a;
+  --bg-card: #13132a;
+  --bg-card-hover: #1a1a35;
+  --text-story: #f0ead6;
+  --text-primary: #e8e8f0;
+  --text-secondary: #7777aa;
+  --text-muted: #444466;
+  --accent-rcb: #cc0000;
+  --accent-gold: #d4a017;
+  --accent-green: #22c55e;
+  --tension-low: #22c55e;
+  --tension-medium: #f59e0b;
+  --tension-high: #ef4444;
+  --tension-critical: #7c3aed;
+  --font-story: 'Lora', Georgia, serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Panel card styling */
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Chapter card styling */
+.chapter-card {
+  background: var(--bg-card-hover);
+  border-left: 3px solid var(--text-muted);
+  padding: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.chapter-card.active {
+  border-left-color: var(--accent-rcb);
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.15);
+}
+
+.chapter-text {
+  font-family: var(--font-story);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-story);
+}
+
+/* Pressure gauge pulse animation */
+@keyframes pressurePulse {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(204, 0, 0, 0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(204, 0, 0, 0.8)); }
+}
+
+.pressure-pulse {
+  animation: pressurePulse 1.5s ease-in-out infinite;
+}
+
+/* Tension bar critical pulse */
+@keyframes criticalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.tension-critical-pulse {
+  animation: criticalPulse 1s ease-in-out infinite;
+}
+
+/* Narrating indicator pulse */
+@keyframes narratingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.narrating-pulse {
+  animation: narratingPulse 1.2s ease-in-out infinite;
+}
+
+/* Typewriter cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typewriter-cursor::after {
+  content: '▌';
+  color: var(--accent-rcb);
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+/* Submit button styling */
+.btn-submit {
+  background: var(--accent-rcb);
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  font-size: 15px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+  background: #e60000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(204, 0, 0, 0.4);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Form inputs */
+.form-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-rcb);
+  box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Reconnecting badge */
+@keyframes reconnectPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.reconnecting-badge {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tension-medium);
+  color: #000;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 999;
+  animation: reconnectPulse 1.5s ease-in-out infinite;
+}
+
+/* Last-6 ball dots */
+.ball-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.ball-dot.wicket { background: var(--tension-high); color: white; }
+.ball-dot.six { background: var(--accent-gold); color: #000; }
+.ball-dot.four { background: var(--accent-green); color: #000; }
+.ball-dot.single { background: rgba(255, 255, 255, 0.15); color: white; }
+.ball-dot.dot-ball { background: rgba(255, 255, 255, 0.06); color: var(--text-muted); }
+.ball-dot.extra { background: transparent; border: 2px solid #3b82f6; color: #3b82f6; }
+
+/* Smooth entrance animation for chapter cards */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chapter-enter {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Epilogue styling */
+.epilogue-card {
+  background: linear-gradient(135deg, #1a1a35 0%, #13132a 100%);
+  border: 1px solid var(--accent-gold);
+  padding: 20px;
+  border-radius: 12px;
+}
