@@ -192,4 +192,4 @@ The Gemini 1.5 Flash free tier allows 15 requests/minute and 1 million tokens/da
 
 ## 📜 License
 
-Built for the **Agentic Premier League** Google Cloud Hackathon, Bengaluru 2025.
+Built for the **Agentic Premier League** Google Cloud , Bengaluru 2026
